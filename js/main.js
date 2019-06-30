@@ -47,17 +47,17 @@ function dataTable()
   {
     columnPeriodo.push(parseFloat(i));
     interes = columnCapBucle * ((amortizacionData[2]/100)/amortizacionData[3]);
-    columnInteres.push(parseFloat(interes));
+    columnInteres.push(parseFloat(interes).toFixed(2));
     cuota = interes + filasAmortizacion;
-    columnCuota.push(cuota);
+    columnCuota.push(cuota.toFixed(2));
     columnCapBucle = columnCapital[i-1] - filasAmortizacion;
-    columnCapital.push(columnCapBucle);
+    columnCapital.push(columnCapBucle.toFixed(2));
 
   }
-  console.log(columnCapital);
-  console.log(columnInteres);
-  console.log(columnCuota);
-  console.log(columnPeriodo);
+  // console.log(columnCapital);
+  // console.log(columnInteres);
+  // console.log(columnCuota);
+  // console.log(columnPeriodo);
   for (var i = 0; i < columnPeriodo.length; i++) {
     if (i==0)
     {
@@ -75,7 +75,7 @@ function dataTable()
         "<td>"+columnPeriodo[i-1]+"</td>"+
         "<td>"+columnCuota[i-1]+"</td>"+
         "<td>"+columnInteres[i-1]+"</td>"+
-        "<td>"+filasAmortizacion+"</td>"+
+        "<td>" + filasAmortizacion.toFixed(2)+"</td>"+
         "<td>"+columnCapital[i]+"</td>"+
       +"</tr>");
     }
@@ -100,6 +100,7 @@ function interes()
 function prestamo()
 {
   $("#atrasAmorti").click(function () {
+    console.log(columnCuota);
     $("#prestamo").show(1000);
     tasa = 0;
     amortizacionData = [];
@@ -108,8 +109,10 @@ function prestamo()
     columnInteres = [];
     columnCuota = [];
     columnPeriodo = [];
-    $("#datosTablaAmortizacion").html();
+    $("#datosTablaAmortizacion").html("");
     $("#amortizando").hide(1000);
+    console.log(columnCuota);
+
   });
   $("#atras").click(function () {
     $("#inicial").show(1000);
